@@ -1,0 +1,192 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+
+/* ===== Custom Theme (Material Design 3 Inspired Dark Palette) ===== */
+@theme {
+  /* --- Colors --- */
+  --color-surface-variant: #312f5f;
+  --color-on-tertiary-container: #003e55;
+  --color-on-secondary-fixed: #07006c;
+  --color-surface-bright: #363364;
+  --color-inverse-surface: #e3dfff;
+  --color-on-error: #690005;
+  --color-surface: #0f0b3c;
+  --color-on-primary-container: #00422b;
+  --color-primary-container: #10b981;
+  --color-on-tertiary-fixed: #001e2c;
+  --color-secondary-container: #3131c0;
+  --color-secondary: #c0c1ff;
+  --color-inverse-primary: #006c49;
+  --color-primary-fixed: #6ffbbe;
+  --color-surface-container-highest: #312f5f;
+  --color-on-primary-fixed-variant: #005236;
+  --color-tertiary: #7bd0ff;
+  --color-on-tertiary-fixed-variant: #004c69;
+  --color-tertiary-fixed-dim: #7bd0ff;
+  --color-on-secondary-fixed-variant: #2f2ebe;
+  --color-secondary-fixed: #e1e0ff;
+  --color-on-error-container: #ffdad6;
+  --color-secondary-fixed-dim: #c0c1ff;
+  --color-outline-variant: #3c4a42;
+  --color-on-primary: #003824;
+  --color-surface-container: #1c1949;
+  --color-on-tertiary: #00354a;
+  --color-surface-container-lowest: #0a0538;
+  --color-tertiary-fixed: #c4e7ff;
+  --color-tertiary-container: #19aee8;
+  --color-error-container: #93000a;
+  --color-on-secondary-container: #b0b2ff;
+  --color-outline: #86948a;
+  --color-on-surface-variant: #bbcabf;
+  --color-surface-container-high: #262454;
+  --color-surface-container-low: #181445;
+  --color-inverse-on-surface: #2d2a5b;
+  --color-surface-dim: #0f0b3c;
+  --color-on-background: #e3dfff;
+  --color-primary: #4edea3;
+  --color-on-primary-fixed: #002113;
+  --color-on-secondary: #1000a9;
+  --color-on-surface: #e3dfff;
+  --color-primary-fixed-dim: #4edea3;
+  --color-surface-tint: #4edea3;
+  --color-error: #ffb4ab;
+  --color-background: #0f0b3c;
+
+  /* --- Fonts --- */
+  --font-headline: "Manrope", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-label: "Space Grotesk", sans-serif;
+
+  /* --- Border Radius --- */
+  --radius: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+  --radius-full: 0.75rem;
+}
+
+/* ===== Base Styles ===== */
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Hanya tampilkan kursor teks pada elemen yang bisa diketik */
+input, textarea, [contenteditable="true"] {
+  cursor: text;
+  user-select: text;
+  -webkit-user-select: text;
+}
+select {
+  cursor: pointer;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ===== Animations ===== */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(78, 222, 163, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(78, 222, 163, 0.5);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in-up-delay-1 {
+  animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-up-delay-2 {
+  animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  opacity: 0;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+/* ===== Form Input Focus Styles ===== */
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus {
+  outline: none;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-variant);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-outline);
+}
+
+/* ===== Utility Classes ===== */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ===== Selection ===== */
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
