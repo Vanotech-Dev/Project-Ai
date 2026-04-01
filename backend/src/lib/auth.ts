@@ -15,7 +15,9 @@ export const auth = betterAuth({
             verification: schema.verification,
         }
     }),
-    trustedOrigins: ["http://localhost:5173"],
+    trustedOrigins: (process.env.CORS_ORIGIN || "http://localhost:5173")
+        .split(",")
+        .map((o) => o.trim()),
     emailAndPassword: {
         enabled: true,
     },

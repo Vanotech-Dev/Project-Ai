@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react'
-import axios from 'axios'
+import api from '../lib/api'
 import { authClient } from '../lib/authClient'
 
 const CATEGORY_MAP = {
@@ -30,7 +30,7 @@ export function TransactionProvider({ children }) {
 
     setIsLoading(true)
     try {
-      const response = await axios.get('/api/transactions')
+      const response = await api.get('/api/transactions')
       const data = response.data
 
       const formatted = data.map((tx) => {
@@ -93,7 +93,7 @@ export function TransactionProvider({ children }) {
     try {
       const amountNum = typeof amount === 'string' ? parseInt(amount.replace(/\./g, ''), 10) : amount;
 
-      await axios.post('/api/transactions', {
+      await api.post('/api/transactions', {
         type,
         amount: amountNum || 0,
         categoryKey,
@@ -112,7 +112,7 @@ export function TransactionProvider({ children }) {
     try {
       const amountNum = typeof amount === 'string' ? parseInt(amount.replace(/\./g, ''), 10) : amount;
 
-      await axios.put(`/api/transactions/${txId}`, {
+      await api.put(`/api/transactions/${txId}`, {
         type,
         amount: amountNum || 0,
         categoryKey,
@@ -129,7 +129,7 @@ export function TransactionProvider({ children }) {
 
   const deleteTransaction = async (txId) => {
     try {
-      await axios.delete(`/api/transactions/${txId}`)
+      await api.delete(`/api/transactions/${txId}`)
       fetchTransactions()
     } catch (error) {
       console.error("Failed to delete transaction", error)

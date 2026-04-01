@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import api from '../lib/api'
 import DashboardLayout from '../components/layouts/DashboardLayout'
 import MaterialIcon from '../components/ui/MaterialIcon'
 import { authClient } from '../lib/authClient'
@@ -16,7 +16,7 @@ export default function ProfilePage() {
   useEffect(() => {
     async function loadProfile() {
       try {
-        const res = await axios.get('/api/users/profile')
+        const res = await api.get('/api/users/profile')
         setName(res.data.name || '')
         setEmail(res.data.email || '')
         setPhone(res.data.phone || '')
@@ -32,7 +32,7 @@ export default function ProfilePage() {
   const handleSave = async (e) => {
     e.preventDefault()
     try {
-      await axios.put('/api/users/profile', { name, phone, bio, twoFAEnabled: twoFA })
+      await api.put('/api/users/profile', { name, phone, bio, twoFAEnabled: twoFA })
       alert("Profil berhasil disimpan!")
     } catch (e) {
       alert("Gagal menyimpan profil.")

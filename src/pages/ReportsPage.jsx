@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import api from '../lib/api'
 import DashboardLayout from '../components/layouts/DashboardLayout'
 import MaterialIcon from '../components/ui/MaterialIcon'
 import { useTransactions } from '../context/TransactionContext'
@@ -41,7 +41,7 @@ export default function ReportsPage() {
   useEffect(() => {
     async function loadSummary() {
       try {
-        const res = await axios.get('/api/reports/summary');
+        const res = await api.get('/api/reports/summary');
         setSummary(res.data);
       } catch (e) {
         console.error("Gagal memuat laporan", e);

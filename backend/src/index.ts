@@ -13,8 +13,12 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // Middleware
+const allowedOrigins = (process.env.CORS_ORIGIN || "http://localhost:5173")
+    .split(",")
+    .map((o) => o.trim());
+
 app.use(cors({
-    origin: "http://localhost:5173", // Allow requests from our React frontend
+    origin: allowedOrigins.length === 1 ? allowedOrigins[0] : allowedOrigins,
     credentials: true, // Necessary for better-auth cookies
 }));
 app.use(express.json());

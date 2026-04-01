@@ -4,7 +4,6 @@ import DashboardLayout from '../components/layouts/DashboardLayout'
 import MaterialIcon from '../components/ui/MaterialIcon'
 import { authClient } from '../lib/authClient'
 import { useTransactions } from '../context/TransactionContext'
-import axios from 'axios'
 
 /* ===============================
    Import Confirmation Dialog

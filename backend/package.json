@@ -6,7 +6,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "start": "tsx src/index.ts",
+    "db:push": "drizzle-kit push"
   },
   "keywords": [],
   "author": "",
@@ -27,5 +29,8 @@
     "drizzle-kit": "^0.31.10",
     "tsx": "^4.21.0",
     "typescript": "^6.0.2"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
